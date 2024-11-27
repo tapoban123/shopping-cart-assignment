@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_cart/theme/custom_colors.dart';
 
 class CataloguePage extends StatelessWidget {
   const CataloguePage({super.key});
@@ -12,7 +13,31 @@ class CataloguePage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.shopping_cart_outlined),
+            icon: Stack(
+              alignment: Alignment.topRight,
+              children: [
+                const Icon(
+                  Icons.shopping_cart_outlined,
+                  size: 30,
+                ),
+                Container(
+                  width: 18,
+                  height: 14,
+                  decoration: BoxDecoration(
+                    color: CustomColors.pinkColor,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  alignment: Alignment.center,
+                  child: const Text(
+                    "10",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 9,
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ],
       ),
