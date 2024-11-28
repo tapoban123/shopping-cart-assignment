@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopping_cart/services/models/item_data_model.dart';
+import 'package:shopping_cart/shopping_cart/models/shopping_item_data_model.dart';
 import 'package:shopping_cart/shopping_cart/providers/shopping_cart_provider.dart';
 import 'package:shopping_cart/theme/custom_colors.dart';
 
@@ -53,6 +54,16 @@ class ItemCard extends ConsumerWidget {
                   bottom: 10,
                   child: ElevatedButton(
                     onPressed: () {
+                      // final shoppingItem = ShoppingItemDataModel(
+                      //   id: itemData.id,
+                      //   thumbnail: itemData.thumbnail,
+                      //   title: itemData.title,
+                      //   brand: itemData.brand,
+                      //   price: itemData.price,
+                      //   discountPercentage: itemData.discountPercentage,
+                      //   itemNewPrice: itemData.itemNewPrice!,
+                      //   itemCount: 1,
+                      // );
                       ref
                           .read(shoppingCartProvider.notifier)
                           .addNewItem(itemData);

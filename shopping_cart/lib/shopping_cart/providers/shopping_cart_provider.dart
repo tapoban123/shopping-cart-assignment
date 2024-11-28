@@ -24,7 +24,28 @@ class ShoppingCartNotifier extends StateNotifier<List<ShoppingItemDataModel>> {
       itemCount: 1,
     );
 
-    state = [...state, shoppingItem];
+    if (itemExists(shoppingItem)) {
+      final existingItem = state.firstWhere(
+        (element) => element.id == newItem.id,
+      );
+
+      state[state.indexOf(existingItem)] = existingItem.copyWith(
+        itemCount: existingItem.itemCount + 1,
+      );
+
+      state = state;
+    } else {
+      state = [...state, shoppingItem];
+    }
+  }
+
+  bool itemExists(ShoppingItemDataModel searchItem) {
+    for (final item in state) {
+      if (item.id == searchItem.id) {
+        return true;
+      }
+    }
+    return false;
   }
 
   List<ShoppingItemDataModel> getDistinctItems() {
@@ -40,11 +61,11 @@ class ShoppingCartNotifier extends StateNotifier<List<ShoppingItemDataModel>> {
     state = [...state];
   }
 
-  int itemCount(ShoppingItemDataModel searchItem) {
+  int itemCount(int itemId) {
     int count = 0;
 
     for (final item in state) {
-      if (searchItem.id == item.id) {
+      if (itemId == item.id) {
         count++;
       }
     }
