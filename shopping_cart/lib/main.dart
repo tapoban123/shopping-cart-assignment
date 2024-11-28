@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopping_cart/pages/catalogue_page.dart';
+import 'package:shopping_cart/shopping_cart/pages/shopping_cart_page.dart';
 import 'package:shopping_cart/theme/custom_colors.dart';
 
 void main() {
@@ -18,12 +19,13 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: CustomColors.scaffoldBackgroundColor,
         appBarTheme: const AppBarTheme(
           elevation: 0.0,
+          centerTitle: true,
           backgroundColor: CustomColors.scaffoldBackgroundColor,
           surfaceTintColor: CustomColors.scaffoldBackgroundColor,
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const CataloguePage(),
+      home: const ShoppingCartPage(),
     );
   }
 }

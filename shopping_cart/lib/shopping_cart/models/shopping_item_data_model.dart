@@ -1,40 +1,36 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-class ItemDataModel {
+class ShoppingItemDataModel {
   final int id;
   final String thumbnail;
   final String title;
   final String brand;
-  final double price;
   final double discountPercentage;
   final double? itemNewPrice;
-
-  ItemDataModel({
+  
+  ShoppingItemDataModel({
     required this.id,
     required this.thumbnail,
     required this.title,
     required this.brand,
-    required this.price,
     required this.discountPercentage,
     this.itemNewPrice,
   });
 
-  ItemDataModel copyWith({
+  ShoppingItemDataModel copyWith({
     int? id,
     String? thumbnail,
     String? title,
     String? brand,
-    double? price,
     double? discountPercentage,
     double? itemNewPrice,
   }) {
-    return ItemDataModel(
+    return ShoppingItemDataModel(
       id: id ?? this.id,
       thumbnail: thumbnail ?? this.thumbnail,
       title: title ?? this.title,
       brand: brand ?? this.brand,
-      price: price ?? this.price,
       discountPercentage: discountPercentage ?? this.discountPercentage,
       itemNewPrice: itemNewPrice ?? this.itemNewPrice,
     );
@@ -46,19 +42,17 @@ class ItemDataModel {
       'thumbnail': thumbnail,
       'title': title,
       'brand': brand,
-      'price': price,
       'discountPercentage': discountPercentage,
       'itemNewPrice': itemNewPrice,
     };
   }
 
-  factory ItemDataModel.fromMap(Map<String, dynamic> map) {
-    return ItemDataModel(
+  factory ShoppingItemDataModel.fromMap(Map<String, dynamic> map) {
+    return ShoppingItemDataModel(
       id: map['id'] as int,
       thumbnail: map['thumbnail'] as String,
       title: map['title'] as String,
       brand: map['brand'] as String,
-      price: map['price'] as double,
       discountPercentage: map['discountPercentage'] as double,
       itemNewPrice: map['itemNewPrice'] != null ? map['itemNewPrice'] as double : null,
     );
@@ -66,16 +60,15 @@ class ItemDataModel {
 
   String toJson() => json.encode(toMap());
 
-  factory ItemDataModel.fromJson(String source) =>
-      ItemDataModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ShoppingItemDataModel.fromJson(String source) => ShoppingItemDataModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'ItemDataModel(id: $id, thumbnail: $thumbnail, title: $title, brand: $brand, price: $price, discountPercentage: $discountPercentage, itemNewPrice: $itemNewPrice)';
+    return 'ShoppingItemDataModel(id: $id, thumbnail: $thumbnail, title: $title, brand: $brand, discountPercentage: $discountPercentage, itemNewPrice: $itemNewPrice)';
   }
 
   @override
-  bool operator ==(covariant ItemDataModel other) {
+  bool operator ==(covariant ShoppingItemDataModel other) {
     if (identical(this, other)) return true;
   
     return 
@@ -83,7 +76,6 @@ class ItemDataModel {
       other.thumbnail == thumbnail &&
       other.title == title &&
       other.brand == brand &&
-      other.price == price &&
       other.discountPercentage == discountPercentage &&
       other.itemNewPrice == itemNewPrice;
   }
@@ -94,7 +86,6 @@ class ItemDataModel {
       thumbnail.hashCode ^
       title.hashCode ^
       brand.hashCode ^
-      price.hashCode ^
       discountPercentage.hashCode ^
       itemNewPrice.hashCode;
   }

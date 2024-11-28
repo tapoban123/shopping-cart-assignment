@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopping_cart/services/models/item_data_model.dart';
+import 'package:shopping_cart/shopping_cart/providers/shopping_cart_provider.dart';
 import 'package:shopping_cart/theme/custom_colors.dart';
 
-class ItemCard extends StatelessWidget {
+class ItemCard extends ConsumerWidget {
   final ItemDataModel itemData;
 
   const ItemCard({
@@ -11,14 +13,12 @@ class ItemCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(5),
       ),
-      // padding: const EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -52,7 +52,11 @@ class ItemCard extends StatelessWidget {
                   right: 10,
                   bottom: 10,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      ref
+                          .read(shoppingCartProvider.notifier)
+                          .addNewItem(itemData);
+                    },
                     style: ElevatedButton.styleFrom(
                       enableFeedback: false,
                       backgroundColor: Colors.white.withOpacity(0.9),
