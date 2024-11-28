@@ -7,7 +7,7 @@ class ItemDataModel {
   final String brand;
   final double price;
   final double discountPercentage;
-  final String? itemNewPrice;
+  final double? itemNewPrice;
 
   ItemDataModel({
     required this.thumbnail,
@@ -24,7 +24,7 @@ class ItemDataModel {
     String? brand,
     double? price,
     double? discountPercentage,
-    String? itemNewPrice,
+    double? itemNewPrice,
   }) {
     return ItemDataModel(
       thumbnail: thumbnail ?? this.thumbnail,
@@ -50,12 +50,11 @@ class ItemDataModel {
   factory ItemDataModel.fromMap(Map<String, dynamic> map) {
     return ItemDataModel(
       thumbnail: map['thumbnail'] as String,
-      title: map['title'].toString(),
-      brand: map['brand'].toString(),
+      title: map['title'] as String,
+      brand: map['brand'] as String,
       price: map['price'] as double,
-      discountPercentage: map['discountPercentage'].toDouble(),
-      itemNewPrice:
-          map['itemNewPrice'] != null ? map['itemNewPrice'] as String : null,
+      discountPercentage: map['discountPercentage'] as double,
+      itemNewPrice: map['itemNewPrice'] != null ? map['itemNewPrice'] as double : null,
     );
   }
 
