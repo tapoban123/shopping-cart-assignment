@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_cart/theme/custom_colors.dart';
+import 'package:shopping_cart/widgets/cart_icon_button.dart';
+import 'package:shopping_cart/widgets/item_card.dart';
 
 class CataloguePage extends StatelessWidget {
   const CataloguePage({super.key});
@@ -10,36 +12,24 @@ class CataloguePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Catalogue"),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Stack(
-              alignment: Alignment.topRight,
-              children: [
-                const Icon(
-                  Icons.shopping_cart_outlined,
-                  size: 30,
-                ),
-                Container(
-                  width: 18,
-                  height: 14,
-                  decoration: BoxDecoration(
-                    color: CustomColors.pinkColor,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  alignment: Alignment.center,
-                  child: const Text(
-                    "10",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 9,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
+        actions: const [
+          CartIconButton(),
         ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 6.0),
+        child: GridView.builder(
+          itemCount: 10,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisExtent: 320,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+          ),
+          itemBuilder: (context, index) {
+            return ItemCard();
+          },
+        ),
       ),
     );
   }
