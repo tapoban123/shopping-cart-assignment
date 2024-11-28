@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const ShoppingCartPage(),
+      home: const CataloguePage(),
     );
   }
 }

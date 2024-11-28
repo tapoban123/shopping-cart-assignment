@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopping_cart/shopping_cart/pages/shopping_cart_page.dart';
+import 'package:shopping_cart/shopping_cart/providers/shopping_cart_provider.dart';
 import 'package:shopping_cart/theme/custom_colors.dart';
 
 class CartIconButton extends ConsumerWidget {
@@ -44,9 +45,10 @@ class CartIconButton extends ConsumerWidget {
               borderRadius: BorderRadius.circular(20),
             ),
             alignment: Alignment.center,
-            child: const Text(
-              "10",
-              style: TextStyle(
+            child:  Text(
+              ref.watch(shoppingCartProvider).length.toString()
+              ,
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 9,
               ),

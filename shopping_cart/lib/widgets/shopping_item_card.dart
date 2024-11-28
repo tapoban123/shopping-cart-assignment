@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shopping_cart/services/models/item_data_model.dart';
 import 'package:shopping_cart/shopping_cart/models/shopping_item_data_model.dart';
+import 'package:shopping_cart/shopping_cart/providers/shopping_cart_provider.dart';
 import 'package:shopping_cart/theme/custom_colors.dart';
+import 'package:shopping_cart/widgets/item_card.dart';
 
-class ShoppingItemCard extends StatelessWidget {
+class ShoppingItemCard extends ConsumerStatefulWidget {
   final ShoppingItemDataModel shoppingItem;
 
   const ShoppingItemCard({
@@ -12,12 +16,21 @@ class ShoppingItemCard extends StatelessWidget {
   });
 
   @override
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _ShoppingItemCardState();
+}
+
+class _ShoppingItemCardState extends ConsumerState<ShoppingItemCard> {
+  @override
   Widget build(BuildContext context) {
+    final itemCount =
+        ref.watch(shoppingCartProvider.notifier).itemCount(widget.shoppingItem);
+
     return Container(
       height: 160,
       width: double.infinity,
       padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
       ),
       child: SizedBox(
@@ -32,7 +45,7 @@ class ShoppingItemCard extends StatelessWidget {
                 border: Border.all(color: Colors.grey.shade300),
               ),
               child: Image.network(
-                "https://cdn.dummyjson.com/products/images/fragrances/Dolce%20Shine%20Eau%20de/thumbnail.png",
+                widget.shoppingItem.thumbnail,
                 fit: BoxFit.cover,
                 loadingBuilder: (context, child, loadingProgress) {
                   if (loadingProgress == null) {
@@ -50,14 +63,14 @@ class ShoppingItemCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "iPhone 6",
-                    style: TextStyle(
+                    widget.shoppingItem.title,
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                      fontSize: 16,
                     ),
                   ),
                   Text(
-                    "Apple",
+                    widget.shoppingItem.brand,
                     style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 12.6,
@@ -68,7 +81,7 @@ class ShoppingItemCard extends StatelessWidget {
                   ),
                   RichText(
                     text: TextSpan(
-                      text: "₹${"549.00"} ",
+                      text: "₹${widget.shoppingItem.price} ",
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey.shade500,
@@ -76,7 +89,7 @@ class ShoppingItemCard extends StatelessWidget {
                       ),
                       children: [
                         TextSpan(
-                          text: " ₹${"477.85"}",
+                          text: " ₹${widget.shoppingItem.itemNewPrice}",
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 14,
@@ -89,7 +102,7 @@ class ShoppingItemCard extends StatelessWidget {
                   ),
                   RichText(
                     text: TextSpan(
-                      text: "${"12.96"}% ",
+                      text: "${widget.shoppingItem.discountPercentage}% ",
                       style: const TextStyle(
                         color: CustomColors.pinkColor,
                         fontSize: 11,
@@ -104,7 +117,7 @@ class ShoppingItemCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Align(
                     alignment: Alignment.bottomRight,
                     child: Container(
@@ -117,11 +130,35 @@ class ShoppingItemCard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Icon(
-                            CupertinoIcons.minus,
+                          GestureDetector(
+                            onTap: () {
+                              ref
+                                  .read(shoppingCartProvider.notifier)
+                                  .removeItem(widget.shoppingItem);
+                            },
+                            child: const Icon(
+                              CupertinoIcons.minus,
+                            ),
                           ),
-                          Text("2"),
-                          Icon(CupertinoIcons.plus),
+                          Text(
+                            itemCount.toString(),
+                            style: const TextStyle(
+                              color: CustomColors.pinkColor,
+                              fontSize: 14,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              ref
+                                  .read(shoppingCartProvider.notifier)
+                                  .addNewItem(
+                                    ItemDataModel.fromMap(
+                                      widget.shoppingItem.toMap(),
+                                    ),
+                                  );
+                            },
+                            child: const Icon(CupertinoIcons.plus),
+                          ),
                         ],
                       ),
                     ),

@@ -8,25 +8,55 @@ StateNotifierProvider<ShoppingCartNotifier, List<ShoppingItemDataModel>>
 );
 
 class ShoppingCartNotifier extends StateNotifier<List<ShoppingItemDataModel>> {
+  List<ShoppingItemDataModel> tempData = [];
+
   ShoppingCartNotifier() : super([]);
 
   void addNewItem(ItemDataModel newItem) {
-    final shoppingItem = ShoppingItemDataModel.fromMap(newItem.toMap());
+    final shoppingItem = ShoppingItemDataModel(
+      id: newItem.id,
+      thumbnail: newItem.thumbnail,
+      title: newItem.title,
+      brand: newItem.brand,
+      price: newItem.price,
+      discountPercentage: newItem.discountPercentage,
+      itemNewPrice: newItem.itemNewPrice!,
+      itemCount: 1,
+    );
 
-    state.add(shoppingItem);
+    state = [...state, shoppingItem];
+  }
+
+  List<ShoppingItemDataModel> getDistinctItems() {
+    return state.toSet().toList();
   }
 
   void removeItem(ShoppingItemDataModel item) {
-    state.removeWhere(
-      (element) => element.id == item.id,
+    state.removeAt(
+      state.indexOf(
+        state.lastWhere((element) => element.id == element.id),
+      ),
     );
+    state = [...state];
+  }
+
+  int itemCount(ShoppingItemDataModel searchItem) {
+    int count = 0;
+
+    for (final item in state) {
+      if (searchItem.id == item.id) {
+        count++;
+      }
+    }
+
+    return count;
   }
 
   String totalPrice() {
     double totalPrice = 0;
 
     for (final item in state) {
-      totalPrice += item.itemNewPrice!;
+      totalPrice += item.itemNewPrice;
     }
 
     return totalPrice.toStringAsFixed(2);

@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shopping_cart/shopping_cart/providers/shopping_cart_provider.dart';
 import 'package:shopping_cart/theme/custom_colors.dart';
 
-class ShoppingCartPageBottomWidget extends StatelessWidget {
+class ShoppingCartPageBottomWidget extends ConsumerWidget {
   const ShoppingCartPageBottomWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final totalPrice = ref.watch(shoppingCartProvider.notifier).totalPrice();
+    final totalItems = ref.watch(shoppingCartProvider).length;
+
     return Container(
       height: 140,
       width: double.infinity,
@@ -34,17 +39,17 @@ class ShoppingCartPageBottomWidget extends StatelessWidget {
                   ),
                 ),
                 RichText(
-                  text: const TextSpan(
+                  text: TextSpan(
                     text: "₹",
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
                     children: [
                       TextSpan(
-                        text: "3805.23",
-                        style: TextStyle(
+                        text: totalPrice,
+                        style: const TextStyle(
                           fontSize: 24,
                         ),
                       ),
@@ -81,9 +86,9 @@ class ShoppingCartPageBottomWidget extends StatelessWidget {
                       color: Colors.white,
                     ),
                     alignment: Alignment.center,
-                    child: const Text(
-                      "5",
-                      style: TextStyle(
+                    child: Text(
+                      totalItems.toString(),
+                      style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                         color: CustomColors.pinkColor,
