@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       title: "Shopping Cart UI",
       theme: ThemeData.light(useMaterial3: true).copyWith(
         scaffoldBackgroundColor: CustomColors.scaffoldBackgroundColor,
+        textTheme: Theme.of(context).textTheme.apply(fontFamily: "Cabin"),
         appBarTheme: const AppBarTheme(
           elevation: 0.0,
           centerTitle: true,

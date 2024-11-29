@@ -30,7 +30,7 @@ class RemoteRepositoryNotifier extends StateNotifier<List<ItemDataModel>?> {
 
           final newData = data.copyWith(
             itemNewPrice: double.parse(
-                (data.price - ((data.discountPercentage / 100) * data.price))
+                _calculateFinalPrice(data.price, data.discountPercentage)
                     .toStringAsFixed(2)),
           );
           formattedItemData.add(newData);
@@ -43,5 +43,12 @@ class RemoteRepositoryNotifier extends StateNotifier<List<ItemDataModel>?> {
     } catch (e) {
       throw HttpException(e.toString());
     }
+  }
+
+  double _calculateFinalPrice(double oldPrice, double discountPercentage) {
+    final double finalPrice =
+        oldPrice - ((discountPercentage / 100) * oldPrice);
+
+    return finalPrice;
   }
 }

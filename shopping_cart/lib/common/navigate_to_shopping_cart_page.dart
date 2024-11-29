@@ -1,7 +1,9 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:shopping_cart/shopping_cart/pages/shopping_cart_page.dart';
 
 void navigateToShoppingCartPage(BuildContext context) {
+  ScaffoldMessenger.of(context).clearSnackBars();
+
   Navigator.of(context).push(PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) =>
         const ShoppingCartPage(),

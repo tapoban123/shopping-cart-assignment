@@ -75,6 +75,7 @@ class ItemCard extends ConsumerWidget {
                       "Add",
                       style: TextStyle(
                         color: CustomColors.pinkColor,
+                        fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
                     ),
