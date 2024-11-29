@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shopping_cart/services/models/item_data_model.dart';
 import 'package:shopping_cart/services/repository/pagination_state_provider.dart';
-import 'package:shopping_cart/services/repository/remote_repository_provider.dart';
-import 'package:shopping_cart/theme/custom_colors.dart';
 import 'package:shopping_cart/widgets/cart_icon_button.dart';
 import 'package:shopping_cart/widgets/item_card.dart';
 
@@ -15,7 +12,7 @@ class CataloguePage extends ConsumerStatefulWidget {
 }
 
 class _CataloguePageState extends ConsumerState<CataloguePage> {
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {

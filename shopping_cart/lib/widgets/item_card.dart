@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopping_cart/services/models/item_data_model.dart';
-import 'package:shopping_cart/shopping_cart/models/shopping_item_data_model.dart';
 import 'package:shopping_cart/shopping_cart/providers/shopping_cart_provider.dart';
 import 'package:shopping_cart/theme/custom_colors.dart';
 
@@ -102,15 +101,20 @@ class ItemCard extends ConsumerWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          itemData.title,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: parentWidth * 0.09,
+                        SizedBox(
+                          width: double.infinity,
+                          height: 20,
+                          child: Text(
+                            itemData.title,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: parentWidth * 0.09,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                         ),
                         Text(
-                          itemData.brand,
+                          itemData.brand ?? "",
                           style: const TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 15,

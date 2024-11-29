@@ -5,7 +5,7 @@ class ItemDataModel {
   final int id;
   final String thumbnail;
   final String title;
-  final String brand;
+  final String? brand;
   final double price;
   final double discountPercentage;
   final double? itemNewPrice;
@@ -57,10 +57,11 @@ class ItemDataModel {
       id: map['id'] as int,
       thumbnail: map['thumbnail'] as String,
       title: map['title'] as String,
-      brand: map['brand'] as String,
-      price: map['price'] as double,
-      discountPercentage: map['discountPercentage'] as double,
-      itemNewPrice: map['itemNewPrice'] != null ? map['itemNewPrice'] as double : null,
+      brand: map['brand'] != null ? map['brand'] as String : null,
+      price: map['price'].toDouble(),
+      discountPercentage: map['discountPercentage'].toDouble(),
+      itemNewPrice:
+          map['itemNewPrice'] != null ? map['itemNewPrice'] as double : null,
     );
   }
 
@@ -77,25 +78,24 @@ class ItemDataModel {
   @override
   bool operator ==(covariant ItemDataModel other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.thumbnail == thumbnail &&
-      other.title == title &&
-      other.brand == brand &&
-      other.price == price &&
-      other.discountPercentage == discountPercentage &&
-      other.itemNewPrice == itemNewPrice;
+
+    return other.id == id &&
+        other.thumbnail == thumbnail &&
+        other.title == title &&
+        other.brand == brand &&
+        other.price == price &&
+        other.discountPercentage == discountPercentage &&
+        other.itemNewPrice == itemNewPrice;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      thumbnail.hashCode ^
-      title.hashCode ^
-      brand.hashCode ^
-      price.hashCode ^
-      discountPercentage.hashCode ^
-      itemNewPrice.hashCode;
+        thumbnail.hashCode ^
+        title.hashCode ^
+        brand.hashCode ^
+        price.hashCode ^
+        discountPercentage.hashCode ^
+        itemNewPrice.hashCode;
   }
 }

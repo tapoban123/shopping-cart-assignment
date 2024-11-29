@@ -17,7 +17,7 @@ class ShoppingCartNotifier extends StateNotifier<List<ShoppingItemDataModel>> {
       id: newItem.id,
       thumbnail: newItem.thumbnail,
       title: newItem.title,
-      brand: newItem.brand,
+      brand: newItem.brand ?? "",
       price: newItem.price,
       discountPercentage: newItem.discountPercentage,
       itemNewPrice: newItem.itemNewPrice!,
@@ -33,7 +33,7 @@ class ShoppingCartNotifier extends StateNotifier<List<ShoppingItemDataModel>> {
         itemCount: existingItem.itemCount + 1,
       );
 
-      state = state;
+      state = [...state];
     } else {
       state = [...state, shoppingItem];
     }
@@ -53,11 +53,16 @@ class ShoppingCartNotifier extends StateNotifier<List<ShoppingItemDataModel>> {
   }
 
   void removeItem(ShoppingItemDataModel item) {
-    state.removeAt(
-      state.indexOf(
-        state.lastWhere((element) => element.id == element.id),
-      ),
-    );
+    if (item.itemCount > 1) {
+      state[state.indexOf(state.firstWhere(
+        (element) => element.id == item.id,
+      ))] = item.copyWith(itemCount: item.itemCount - 1);
+    } else {
+      state.removeWhere(
+        (element) => element.id == item.id,
+      );
+    }
+
     state = [...state];
   }
 
@@ -73,11 +78,21 @@ class ShoppingCartNotifier extends StateNotifier<List<ShoppingItemDataModel>> {
     return count;
   }
 
+  int totalItemCount() {
+    int count = 0;
+
+    for (final item in state) {
+      count += item.itemCount;
+    }
+
+    return count;
+  }
+
   String totalPrice() {
     double totalPrice = 0;
 
     for (final item in state) {
-      totalPrice += item.itemNewPrice;
+      totalPrice += (item.itemNewPrice * item.itemCount);
     }
 
     return totalPrice.toStringAsFixed(2);

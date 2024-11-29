@@ -9,6 +9,10 @@ class CartIconButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final totalItems = ref.read(shoppingCartProvider.notifier).totalItemCount();
+
+    final shoppingCartState = ref.watch(shoppingCartProvider).length;
+
     return IconButton(
       onPressed: () {
         Navigator.of(context).push(PageRouteBuilder(
@@ -45,9 +49,8 @@ class CartIconButton extends ConsumerWidget {
               borderRadius: BorderRadius.circular(20),
             ),
             alignment: Alignment.center,
-            child:  Text(
-              ref.watch(shoppingCartProvider).length.toString()
-              ,
+            child: Text(
+              totalItems.toString(),
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 9,

@@ -5,7 +5,6 @@ import 'package:shopping_cart/services/models/item_data_model.dart';
 import 'package:shopping_cart/shopping_cart/models/shopping_item_data_model.dart';
 import 'package:shopping_cart/shopping_cart/providers/shopping_cart_provider.dart';
 import 'package:shopping_cart/theme/custom_colors.dart';
-import 'package:shopping_cart/widgets/item_card.dart';
 
 class ShoppingItemCard extends ConsumerStatefulWidget {
   final ShoppingItemDataModel shoppingItem;

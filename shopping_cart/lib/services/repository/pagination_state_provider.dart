@@ -24,8 +24,8 @@ class PaginationStateNotifier extends StateNotifier<PaginationStateModel> {
   }
 
   late int _skip;
-  int _limit = 10;
-  final int _total = 30;
+  final int _limit = 10;
+  final int _total = 194;
 
   Future<void> fetchNextPage() async {
     if (state.isLoading || !state.hasMoreItems) return;
@@ -33,7 +33,7 @@ class PaginationStateNotifier extends StateNotifier<PaginationStateModel> {
     state = state.copyWith(isLoading: true);
     try {
       _skip = state.items.length;
-      print(_skip);
+
       final nextPageItems = await ref
           .read(remoteRepositoryProvider.notifier)
           .fetchData(_skip, _limit);
