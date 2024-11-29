@@ -5,8 +5,10 @@ import 'package:shopping_cart/catalogue/services/models/item_data_model.dart';
 import 'package:shopping_cart/common/show_snack_bar.dart';
 import 'package:shopping_cart/shopping_cart/providers/shopping_cart_provider.dart';
 import 'package:shopping_cart/theme/custom_colors.dart';
+import 'package:shopping_cart/catalogue/pages/catalogue_page.dart';
 
 class ItemCard extends ConsumerStatefulWidget {
+  /// This widget displays each item on the [CataloguePage]
   final ItemDataModel itemData;
 
   const ItemCard({

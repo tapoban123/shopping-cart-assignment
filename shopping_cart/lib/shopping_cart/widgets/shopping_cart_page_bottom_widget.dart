@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopping_cart/shopping_cart/providers/shopping_cart_provider.dart';
 import 'package:shopping_cart/theme/custom_colors.dart';
+import 'package:shopping_cart/shopping_cart/pages/shopping_cart_page.dart';
 
 class ShoppingCartPageBottomWidget extends ConsumerWidget {
+  /// This [Widget] is displayed at the bottom of [ShoppingCartPage] with the total price of all the
+  ///
+  /// items added to cart and a `Check Out` button.
   const ShoppingCartPageBottomWidget({super.key});
 
   @override

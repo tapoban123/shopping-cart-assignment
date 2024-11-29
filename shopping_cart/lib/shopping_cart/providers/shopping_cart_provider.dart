@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopping_cart/catalogue/services/models/item_data_model.dart';
 import 'package:shopping_cart/shopping_cart/models/shopping_item_data_model.dart';
+import 'package:shopping_cart/shopping_cart/pages/shopping_cart_page.dart';
 
 StateNotifierProvider<ShoppingCartNotifier, List<ShoppingItemDataModel>>
     shoppingCartProvider = StateNotifierProvider(
@@ -8,6 +9,7 @@ StateNotifierProvider<ShoppingCartNotifier, List<ShoppingItemDataModel>>
 );
 
 class ShoppingCartNotifier extends StateNotifier<List<ShoppingItemDataModel>> {
+  /// This class all the state management logic that has been implemented in the [ShoppingCartPage].
   List<ShoppingItemDataModel> tempData = [];
 
   ShoppingCartNotifier() : super([]);

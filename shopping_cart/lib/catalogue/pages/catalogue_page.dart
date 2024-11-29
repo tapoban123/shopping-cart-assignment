@@ -5,6 +5,7 @@ import 'package:shopping_cart/catalogue/widgets/cart_icon_button.dart';
 import 'package:shopping_cart/catalogue/widgets/item_card.dart';
 
 class CataloguePage extends ConsumerStatefulWidget {
+  /// This page implements the catalogue. It displays all the items fetched from the API.
   const CataloguePage({super.key});
 
   @override

@@ -10,6 +10,7 @@ final paginationStateProvider =
 );
 
 class PaginationStateNotifier extends StateNotifier<PaginationStateModel> {
+  /// This class contains all the state management logic required for implementing pagination in the application.
   final Ref ref;
 
   PaginationStateNotifier(this.ref)
@@ -32,9 +33,7 @@ class PaginationStateNotifier extends StateNotifier<PaginationStateModel> {
 
     state = state.copyWith(isLoading: true);
     try {
-   
-        _skip = state.items.length;
-      
+      _skip = state.items.length;
 
       final nextPageItems = await ref
           .read(remoteRepositoryProvider.notifier)

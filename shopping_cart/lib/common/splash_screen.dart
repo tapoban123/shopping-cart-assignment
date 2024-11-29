@@ -1,9 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:shopping_cart/catalogue/pages/catalogue_page.dart';
 
 class SplashScreen extends StatefulWidget {
+  /// This class implements the SplashScreen of the application that is displayed at the start of the application.
   const SplashScreen({super.key});
 
   @override

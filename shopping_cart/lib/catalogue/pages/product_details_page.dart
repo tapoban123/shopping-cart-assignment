@@ -4,8 +4,10 @@ import 'package:shopping_cart/catalogue/services/models/item_data_model.dart';
 import 'package:shopping_cart/common/show_snack_bar.dart';
 import 'package:shopping_cart/shopping_cart/providers/shopping_cart_provider.dart';
 import 'package:shopping_cart/theme/custom_colors.dart';
+import 'package:shopping_cart/catalogue/pages/catalogue_page.dart';
 
 class ProductDetailsPage extends ConsumerWidget {
+  /// This class displays the user all the details of a product. Used in [CataloguePage].
   final ItemDataModel itemData;
 
   const ProductDetailsPage({
@@ -118,8 +120,7 @@ class ProductDetailsPage extends ConsumerWidget {
                           ScaffoldMessenger.of(context).clearSnackBars();
 
                           showSnackBar(context,
-                              message:
-                                  "Added ${itemData.title} to cart.");
+                              message: "Added ${itemData.title} to cart.");
                         },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(

@@ -5,8 +5,10 @@ import 'package:shopping_cart/catalogue/services/models/item_data_model.dart';
 import 'package:shopping_cart/shopping_cart/models/shopping_item_data_model.dart';
 import 'package:shopping_cart/shopping_cart/providers/shopping_cart_provider.dart';
 import 'package:shopping_cart/theme/custom_colors.dart';
+import 'package:shopping_cart/shopping_cart/pages/shopping_cart_page.dart';
 
 class ShoppingItemCard extends ConsumerStatefulWidget {
+  /// This [Widget] displays the details of each item on the [ShoppingCartPage].
   final ShoppingItemDataModel shoppingItem;
 
   const ShoppingItemCard({

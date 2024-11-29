@@ -4,8 +4,10 @@ import 'package:shopping_cart/shopping_cart/models/shopping_item_data_model.dart
 import 'package:shopping_cart/shopping_cart/providers/shopping_cart_provider.dart';
 import 'package:shopping_cart/shopping_cart/widgets/shopping_cart_page_bottom_widget.dart';
 import 'package:shopping_cart/shopping_cart/widgets/shopping_item_card.dart';
+import 'package:shopping_cart/catalogue/widgets/cart_icon_button.dart';
 
 class ShoppingCartPage extends ConsumerStatefulWidget {
+  /// This class implements the `ShoppingCartPage` that is displayed when the user clicks on [CartIconButton].
   const ShoppingCartPage({super.key});
 
   @override
