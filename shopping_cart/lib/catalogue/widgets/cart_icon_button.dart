@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shopping_cart/common/navigate_to_shopping_cart_page.dart';
 import 'package:shopping_cart/shopping_cart/pages/shopping_cart_page.dart';
 import 'package:shopping_cart/shopping_cart/providers/shopping_cart_provider.dart';
 import 'package:shopping_cart/theme/custom_colors.dart';
@@ -14,24 +15,7 @@ class CartIconButton extends ConsumerWidget {
 
     return IconButton(
       onPressed: () {
-        Navigator.of(context).push(PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) =>
-              const ShoppingCartPage(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            final tween = Tween(
-              begin: const Offset(0, 1),
-              end: Offset.zero,
-            ).animate(CurvedAnimation(
-              parent: animation,
-              curve: Curves.decelerate,
-            ));
-
-            return SlideTransition(
-              position: tween,
-              child: child,
-            );
-          },
-        ));
+        navigateToShoppingCartPage(context);
       },
       icon: Stack(
         alignment: Alignment.topRight,

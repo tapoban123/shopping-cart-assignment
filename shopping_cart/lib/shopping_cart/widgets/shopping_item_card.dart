@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shopping_cart/services/models/item_data_model.dart';
+import 'package:shopping_cart/catalogue/services/models/item_data_model.dart';
 import 'package:shopping_cart/shopping_cart/models/shopping_item_data_model.dart';
 import 'package:shopping_cart/shopping_cart/providers/shopping_cart_provider.dart';
 import 'package:shopping_cart/theme/custom_colors.dart';

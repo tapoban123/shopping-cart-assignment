@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shopping_cart/services/models/item_data_model.dart';
+import 'package:shopping_cart/catalogue/services/models/item_data_model.dart';
 import 'package:http/http.dart' as http;
 
 StateNotifierProvider<RemoteRepositoryNotifier, List<ItemDataModel>?>

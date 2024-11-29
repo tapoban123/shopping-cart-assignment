@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shopping_cart/services/models/pagination_state_model.dart';
-import 'package:shopping_cart/services/repository/remote_repository_provider.dart';
+import 'package:shopping_cart/catalogue/services/models/pagination_state_model.dart';
+import 'package:shopping_cart/catalogue/services/repository/remote_repository_provider.dart';
 
 final paginationStateProvider =
     StateNotifierProvider<PaginationStateNotifier, PaginationStateModel>(
