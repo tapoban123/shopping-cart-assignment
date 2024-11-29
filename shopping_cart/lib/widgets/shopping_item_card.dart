@@ -22,16 +22,6 @@ class ShoppingItemCard extends ConsumerStatefulWidget {
 class _ShoppingItemCardState extends ConsumerState<ShoppingItemCard> {
   @override
   Widget build(BuildContext context) {
-    final itemCount =
-        ref.watch(shoppingCartProvider.notifier).itemCount(widget.shoppingItem.id);
-
-    // widget.shoppingItem.itemCount =
-    //     ref.watch(shoppingCartProvider.notifier).itemCount(widget.shoppingItem);
-
-    // itemCount: ref
-    //     .watch(shoppingCartProvider.notifier)
-    //     .itemCount(widget.shoppingItem);
-
     return Container(
       height: 160,
       width: double.infinity,
@@ -158,7 +148,8 @@ class _ShoppingItemCardState extends ConsumerState<ShoppingItemCard> {
                               ref
                                   .read(shoppingCartProvider.notifier)
                                   .addNewItem(
-                                  ItemDataModel.fromMap(widget.shoppingItem.toMap()),
+                                    ItemDataModel.fromMap(
+                                        widget.shoppingItem.toMap()),
                                   );
                             },
                             child: const Icon(CupertinoIcons.plus),

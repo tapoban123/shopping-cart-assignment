@@ -8,9 +8,9 @@ class ShoppingCartPageBottomWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(shoppingCartProvider).length;
     final totalPrice = ref.read(shoppingCartProvider.notifier).totalPrice();
     final totalItems = ref.read(shoppingCartProvider.notifier).totalItemCount();
-    final shoppingCartState = ref.watch(shoppingCartProvider).length;
 
     return Container(
       height: 140,

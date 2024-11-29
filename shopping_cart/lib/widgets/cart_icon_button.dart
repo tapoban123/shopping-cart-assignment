@@ -10,8 +10,7 @@ class CartIconButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final totalItems = ref.read(shoppingCartProvider.notifier).totalItemCount();
-
-    final shoppingCartState = ref.watch(shoppingCartProvider).length;
+    ref.watch(shoppingCartProvider).length;
 
     return IconButton(
       onPressed: () {

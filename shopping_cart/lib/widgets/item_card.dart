@@ -53,16 +53,6 @@ class ItemCard extends ConsumerWidget {
                   bottom: 10,
                   child: ElevatedButton(
                     onPressed: () {
-                      // final shoppingItem = ShoppingItemDataModel(
-                      //   id: itemData.id,
-                      //   thumbnail: itemData.thumbnail,
-                      //   title: itemData.title,
-                      //   brand: itemData.brand,
-                      //   price: itemData.price,
-                      //   discountPercentage: itemData.discountPercentage,
-                      //   itemNewPrice: itemData.itemNewPrice!,
-                      //   itemCount: 1,
-                      // );
                       ref
                           .read(shoppingCartProvider.notifier)
                           .addNewItem(itemData);

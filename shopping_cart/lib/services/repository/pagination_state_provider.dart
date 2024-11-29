@@ -43,7 +43,7 @@ class PaginationStateNotifier extends StateNotifier<PaginationStateModel> {
           items: [...state.items, ...nextPageItems],
           hasMoreItems: (_skip + nextPageItems.length) < _total,
         );
-      }else {
+      } else {
         state = state.copyWith(hasMoreItems: false);
       }
     } catch (e) {
