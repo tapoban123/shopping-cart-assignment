@@ -30,6 +30,12 @@ class _CataloguePageState extends ConsumerState<CataloguePage> {
   }
 
   @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final paginationState = ref.watch(paginationStateProvider);
 
@@ -49,7 +55,7 @@ class _CataloguePageState extends ConsumerState<CataloguePage> {
               (paginationState.hasMoreItems ? 1 : 0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            mainAxisExtent: 320,
+            mainAxisExtent: 300,
             mainAxisSpacing: 10,
             crossAxisSpacing: 10,
           ),

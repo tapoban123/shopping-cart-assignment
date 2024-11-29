@@ -32,7 +32,9 @@ class PaginationStateNotifier extends StateNotifier<PaginationStateModel> {
 
     state = state.copyWith(isLoading: true);
     try {
-      _skip = state.items.length;
+   
+        _skip = state.items.length;
+      
 
       final nextPageItems = await ref
           .read(remoteRepositoryProvider.notifier)

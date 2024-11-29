@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shopping_cart/catalogue/pages/catalogue_page.dart';
+import 'package:shopping_cart/common/splash_screen.dart';
 import 'package:shopping_cart/theme/custom_colors.dart';
 
 void main() {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const CataloguePage(),
+      home: const SplashScreen(),
     );
   }
 }
