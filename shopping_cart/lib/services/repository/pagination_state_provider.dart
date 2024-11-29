@@ -1,0 +1,55 @@
+import 'dart:developer';
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shopping_cart/services/models/pagination_state_model.dart';
+import 'package:shopping_cart/services/repository/remote_repository_provider.dart';
+
+final paginationStateProvider =
+    StateNotifierProvider<PaginationStateNotifier, PaginationStateModel>(
+  (ref) => PaginationStateNotifier(ref),
+);
+
+class PaginationStateNotifier extends StateNotifier<PaginationStateModel> {
+  final Ref ref;
+
+  PaginationStateNotifier(this.ref)
+      : super(
+          PaginationStateModel(
+            items: [],
+            isLoading: false,
+            hasMoreItems: true,
+          ),
+        ) {
+    fetchNextPage();
+  }
+
+  late int _skip;
+  int _limit = 10;
+  final int _total = 30;
+
+  Future<void> fetchNextPage() async {
+    if (state.isLoading || !state.hasMoreItems) return;
+
+    state = state.copyWith(isLoading: true);
+    try {
+      _skip = state.items.length;
+      print(_skip);
+      final nextPageItems = await ref
+          .read(remoteRepositoryProvider.notifier)
+          .fetchData(_skip, _limit);
+
+      if (nextPageItems.isNotEmpty) {
+        state = state.copyWith(
+          items: [...state.items, ...nextPageItems],
+          hasMoreItems: (_skip + nextPageItems.length) < _total,
+        );
+      }else {
+        state = state.copyWith(hasMoreItems: false);
+      }
+    } catch (e) {
+      log(e.toString());
+    } finally {
+      state = state.copyWith(isLoading: false);
+    }
+  }
+}
